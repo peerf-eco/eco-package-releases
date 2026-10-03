@@ -1,5 +1,5 @@
-# eco-cli
-Eco-cli is a tool to find and download EcoOS ecosystem products from marketplace 'https://ecoos.dev' from terminal, CI pipeline or by AI agent, including Adapted COM (ACOM) components, applications, devkits, libraries, documentation, and etc.
+# eco-package
+eco-package is a tool to find and download EcoOS ecosystem products from marketplace 'https://ecoos.dev' from terminal, CI pipeline or by AI agent, including Adapted COM (ACOM) components, applications, devkits, libraries, documentation, and etc.
 
 This project uses Quarkus Async Java Framework under the hood.
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
@@ -11,14 +11,14 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 **! IMPORTANT:**
 **AWS library**: check that aws fast download library 'libaws-crt-jni.so/.dylib' (on Windows: 'aws-crt-jni.dll') is available:  
 
-- Для запуска JAR пользователю нужно будет вводить: java -Djava.library.path=. -jar eco-cli.jar
-- Native-версии (eco-cli без расширения .jar) эта библиотека libaws-crt-jni.dylib/.so/.dll нужна обязательно в той же папке.
+- Для запуска JAR пользователю нужно будет вводить: java -Djava.library.path=. -jar eco-package.jar
+- Native-версии (eco-package без расширения .jar) эта библиотека libaws-crt-jni.dylib/.so/.dll нужна обязательно в той же папке.
 
 ## Authentication
 
 ### Authentication Decision Logic
 
-The Eco-CLI uses a priority-based authentication system with the following decision flow:
+The eco-package uses a priority-based authentication system with the following decision flow:
 
 ```mermaid
 graph TD
@@ -228,7 +228,7 @@ the above command will find and print of your Organization's component having --
 Every command that produces a payload supports the global `--output=json|text` flag.
 `json` is selected automatically whenever stdout is not a TTY (piped/redirected);
 force text back with `--output=text`. The contract is designed for AI-coder agents
-and RAG pipelines (PRD "eco-cli improvements"):
+and RAG pipelines (PRD "eco-package improvements"):
 
 - **stdout purity** — in JSON mode stdout carries exactly one result envelope;
   every diagnostic (banner, progress, log line, colour escape) goes to stderr,
@@ -321,10 +321,10 @@ standard result envelope instead.
 
 `scripts/eco_cli_conformance.py` asserts the whole contract (envelope, exit codes,
 pagination, receipts, resolve, export, token secrecy, `--help` on every
-subcommand) against any eco-cli build:
+subcommand) against any eco-package build:
 
 ```shell script
-python3 scripts/eco_cli_conformance.py --cli "java -jar target/eco-cli-<version>-runner.jar"
+python3 scripts/eco_cli_conformance.py --cli "java -jar target/eco-package-<version>-runner.jar"
 ```
 
 `bin/SKILL.md` is generated from the CLI's own option model with
@@ -432,7 +432,7 @@ use -h or --help option to access more commands and details
 
 ### Destination Path Decision Logic
 
-The Eco-CLI `pull` command determines the destination path for downloaded and extracted components based on several factors:
+The eco-package `pull` command determines the destination path for downloaded and extracted components based on several factors:
 
 ```mermaid
 graph TD
